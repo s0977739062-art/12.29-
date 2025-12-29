@@ -20,20 +20,80 @@ body {
 }
 
 // Hero Section
+@keyframes techGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fastNeonFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    // 移動到最右側
+    background-position: 100% 50%;
+  }
+  100% {
+    // 回到起點，形成循環
+    background-position: 0% 50%;
+  }
+}
+
+// --- 2. 套用樣式 ---
+// 請整塊替換掉舊的 .hero-section
 .hero-section {
-  background: linear-gradient(135deg, $dark 0%, #7b7e88 100%);
+    
+  // [核心修改] 背景顏色：高強度的霓虹撞色
+  // 使用純黑、螢光粉(#ff00ff)、螢光青(#00ffff) 互相穿插
+  background: linear-gradient(
+    90deg, 
+    #000000, 
+    #ff00ff, 
+    #000000, 
+    #00ffff,
+    #000000
+  );
+  
+  // [核心修改] 背景尺寸：放大倍率不用太大，這樣流動感更強烈
+  background-size: 300% 300%;
+  
+  // [核心修改] 動畫速度：極快 (只有 3 秒)
+  // linear 讓速度保持一致，看起來更有機械感
+  animation: fastNeonFlow 3s linear infinite;
+
+  // --- 以下是標準排版設定 (不動) ---
   color: white;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
 
-  
+  // [重要] 加強黑色遮罩
+  // 因為背景很亮，遮罩要調深到 70% (0.7)，不然文字看不見
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 1;
+  }
+
+  // 確保文字內容浮在最上面
+  .container {
+    position: relative;
+    z-index: 2;
+    // 稍微加個文字陰影，讓標題在霓虹背景上更跳
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
   h1 {
-    font-weight: 800;
-    letter-spacing: 2px;
+    font-weight: 800;    // 設定為特粗
+    letter-spacing: 2px; // 稍微加寬字距，更有氣勢
   }
 }
+
+
 
 // 區塊通用間距
 section {
