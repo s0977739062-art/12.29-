@@ -1,0 +1,48 @@
+// 自定義變數 (在引入 Bootstrap 前設定以覆寫)
+$primary: #0d6efd;
+$secondary: #6c757d;
+$dark: #0f172a; // 深藍黑色背景
+$font-family-sans-serif: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+// 1. 引入 Bootstrap SCSS
+@import "bootstrap/scss/bootstrap";
+
+// 2. 自定義樣式
+body {
+  background-color: #f8f9fa;
+  overflow-x: hidden; // 防止 AOS 動畫導致的水平滾動條
+}
+
+// 導覽列透明效果
+.navbar {
+  background: rgba($dark, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+// Hero Section
+.hero-section {
+  background: linear-gradient(135deg, $dark 0%, #7b7e88 100%);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  
+  h1 {
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+}
+
+// 區塊通用間距
+section {
+  padding: 80px 0;
+}
+
+// 講者圖片
+.speaker-img {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
